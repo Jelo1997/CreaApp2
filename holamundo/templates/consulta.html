@@ -1,0 +1,53 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+  
+<center>
+    <h1>Seguimiento de Procesos </h1>
+    <h3>{{ cliente.nombre }} {{ cliente.apellido }}</h3>
+    <h3>{{ cliente.cedula }}</h3>
+</center>
+
+<tbody id="tbody-propiedades">
+    <hr>
+    {% if propd == '' %}
+    {% else %}
+<center>
+    <h2>Procesos de Compra</h2>
+</center>
+<hr>
+
+<table class="table table-striped" style="text-align: center" id="tabla-propiedades">
+
+    <tr>
+      <th>Código</th>
+      <th>Tipo</th>
+      <th>Ubicación</th>
+      <th>Proceso</th>
+      <th>Observaciones</th>
+    </tr>
+
+        {% for propiedad in propd %}
+          <tr>
+            <td>{{ propiedad.codigo }}</td>
+            <td> {{propiedad.tipo}} </td>
+            <td> {{propiedad.ubicacion}} </td>
+            <td> {{propiedad.proceso_venta}} </td>
+            <td> {{propiedad.observaciones_procesos}} </td>
+          </tr>
+        {% endfor %}
+
+  </table>
+  {% endif %}
+</tbody>
+<hr>
+
+{% endblock %}
+<script>
+    const tablaPropiedades = document.getElementById('tabla-propiedades');
+    const tbodyPropiedades = document.getElementById('tbody-propiedades');
+    
+    if (tbodyPropiedades.querySelector('tr')) {
+      tablaPropiedades.classList.remove('oculto');
+    }
+</script>
